@@ -33,6 +33,10 @@ public class Panel extends AbstractList implements Iterable {
         };
     }
     
+    
+    // On doit implementer ces méthodes car nous etendons la classe AbstractList, il faut donc nécessairement les surchager afin de pouvoir les utiliser
+    // Correctement selon notre projet et non comme leurs implementation de base 
+    
     @Override
     public Object get(int index) {
         return start + index;
@@ -45,7 +49,7 @@ public class Panel extends AbstractList implements Iterable {
     
     public static Iterator<Integer> panel1(int start, int end) {
     	Iterator<Integer> res; 
-    	if(end>start) {
+    	if(start>end) {
     		throw new IllegalArgumentException();
     	}
     	else {
@@ -64,4 +68,7 @@ public class Panel extends AbstractList implements Iterable {
         return new Panel(start, end);
     }
 
+    
+    
+    
 }

@@ -25,6 +25,17 @@ public class PanelTest {
 		Panel.panel(5, 1);
 	}*/
 	
+	@Test
+	public void panel1() {
+	 
+	    Throwable exception = assertThrows(
+	    		IllegalArgumentException.class, () -> {
+	    			Panel.panel1(5, 1);
+	            }
+	    );
+	 
+	
+	}
 
 	@Test
 	public void panelSizes() {
