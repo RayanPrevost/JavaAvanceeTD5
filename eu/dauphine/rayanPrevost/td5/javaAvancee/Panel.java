@@ -4,14 +4,16 @@ import java.util.AbstractList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Panel implements Iterable{
+public class Panel extends AbstractList implements Iterable {
 
-    private int start, end, current;
+    private int start;
+    private int end;
+    private int currentInt;
 
     Panel(int start, int end) {
         this.start = start;
         this.end = end;
-        this.current = start;
+        this.currentInt = start;
     }
 
     @Override
@@ -20,25 +22,46 @@ public class Panel implements Iterable{
 
             @Override
             public boolean hasNext() {
-                return current <= end;
+                return currentInt <= end;
             }
 
             @Override
             public Integer next() {
-                return Integer.valueOf(current++);
+                return Integer.valueOf(currentInt++);
             }
             
         };
     }
-
-    public static Iterator<Integer> panel1(int start, int end) {
-        return new Panel(start, end).iterator();
+    
+    @Override
+    public Object get(int index) {
+        return start + index;
     }
+
+    @Override
+    public int size() {
+        return end - start + 1;
+    }
+    
+    public static Iterator<Integer> panel1(int start, int end) {
+    	Iterator<Integer> res; 
+    	if(end>start) {
+    		throw new IllegalArgumentException();
+    	}
+    	else {
+    		res = new Panel(start, end).iterator();
+    	}
+    
+    	return res;
+    }
+
 
     public static Iterable<Integer> panel2(int start, int end) {
         return new Panel(start, end);
     }
-
-
+    
+    public static List<Integer> panel(int start, int end) {
+        return new Panel(start, end);
+    }
 
 }
